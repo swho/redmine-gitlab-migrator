@@ -239,7 +239,10 @@ def convert_issue(redmine_api_key, redmine_issue, redmine_user_index, gitlab_use
 
     version = redmine_issue.get('fixed_version', None)
     if version:
-        data['milestone_id'] = gitlab_milestones_index[version['name']]['id']
+        try:
+            data['milestone_id'] = gitlab_milestones_index[version['name']]['id']
+        except:
+            data['milestone_id'] = ''
 
     meta = {
         'notes': list(convert_notes(redmine_issue['journals'],

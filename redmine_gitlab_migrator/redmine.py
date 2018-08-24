@@ -88,7 +88,7 @@ class RedmineProject(Project):
             # detail view...
 
             for issue_id in sorted(i['id'] for i in issues):
-                issue_url = '{}/issues/{}.json?include=journals,watchers,relations,children,attachments,changesets'.format(
+                issue_url = '{}/issues/{}.json?status_id=*&include=journals,watchers,relations,children,attachments,changesets'.format(
                     self.instance_url, issue_id)
                 detailed_issues.append(self.api.get(issue_url))
 
